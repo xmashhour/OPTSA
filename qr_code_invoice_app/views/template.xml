@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>        
+    <!--template id="report_assets_common" name="Technical Service Assets Reports" inherit_id="web.report_assets_common">		           
+        <xpath expr="//link[last()]" position="after">			                
+            <link rel="stylesheet" href="qr_code_invoice_app/static/css/font.css"/> /*This is your custom css file*/            
+        </xpath>	        
+    </template-->
+</odoo>

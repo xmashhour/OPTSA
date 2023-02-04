@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- QWeb Reports -->
+        <report
+        id="account_invoices_zakat_tax_authority"
+        model="account.move"
+        string="Tax Invoices"
+        report_type="qweb-pdf"
+        name="qr_code_invoice_app.report_invoice_zakat_tax_authority"
+        file="qr_code_invoice_app.report_invoice_zakat_tax_authority"
+        attachment="(object.state in ('open','posted')) and ('INV'+(object.name or '').replace('/','')+'.pdf')"
+        print_report_name="(object._get_report_base_filename())"
+        />
+    </data>
+</odoo>        

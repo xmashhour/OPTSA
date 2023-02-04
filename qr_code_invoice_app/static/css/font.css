@@ -1,0 +1,11 @@
+@font-face {
+  font-family: "Tajawal";
+  src: url(/qr_code_invoice_app/static/fonts/Tajawal-Bold.ttf)
+    format("truetype");
+}
+
+body {
+  margin: 0;
+  font-family: "Tajawal" !important;
+  color: rgba(14, 13, 13, 0.8);
+}
