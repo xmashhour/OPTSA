@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- QWeb Reports -->
+        <!-- NAME & FILE_NAME should be the same -->
+        <report
+                id="invoice_report_id"
+                model="account.move"
+                report_type="qweb-pdf"
+                string="Opt Report"
+                name="opt_custom_report.temp_id_invoice"
+                file="opt_custom_report.temp_id_invoice"
+        />
+
+        <template id="temp_id_invoice">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <t t-foreach="docs" t-as="doc">
+                        <div class="page">
+                            <style type="text/css">
+                                .tg {border-collapse:collapse;border-spacing:0;}
+                                .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial,
+                                sans-serif;font-size:14px;
+                                overflow:hidden;padding:10px 6px;word-break:normal;}
+                                .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial,
+                                sans-serif;font-size:14px;
+                                font-weight:normal;overflow:hidden;padding:13px 7px;word-break:normal;}
+                                .tg .tg-9wq8{border-color:inherit;text-align:center;vertical-align:middle}
+                                .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+                                .tg .tg-dvpl{border-color:inherit;text-align:right;vertical-align:top}
+                            </style>
+                            <table class="tg" style="undefined;table-layout: fixed; width: 917px">
+                                <colgroup>
+                                    <col style="width: 266px"/>
+                                    <col style="width: 199px"/>
+                                    <col style="width: 183px"/>
+                                    <col style="width: 269px"/>
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th class="tg-9wq8" rowspan="2">
+                                            <span style="font-weight:bold">OPT Chemicals Saudi Factory and Co.</span>
+                                            <br/>
+                                            <span style="font-weight:bold">شركة مصنع أو بي تي السعودية للكيماويات
+                                            </span>
+                                            <br/>
+                                        </th>
+                                        <th class="tg-9wq8" colspan="2" rowspan="2">
+                                            <span style="font-weight:bold">Tax Invoice</span>
+                                            <br/>
+                                            <span style="font-weight:bold">الفاتورة الضريبية</span>
+                                        </th>
+                                        <th class="tg-0pky" rowspan="2" style="text-align:center">
+                                            <img  t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', doc.name, 400, 400)" alt="QR Code" style="height:100px"/>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="tg-0pky">Invoice Date :</td>
+                                        <td class="tg-0pky">
+                                            <span t-field="doc.invoice_date"/>
+                                        </td>
+                                        <td class="tg-0pky">
+                                            <span t-field="doc.invoice_date"/>
+                                        </td>
+                                        <td class="tg-dvpl">تاريخ الفاتورة
+                                            <br/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0pky">Invoice No :</td>
+                                        <td class="tg-0pky">
+                                            <span t-field="doc.name"/>
+                                        </td>
+                                        <td class="tg-0pky">
+                                            <span t-field="doc.name"/>
+                                        </td>
+                                        <td class="tg-dvpl">رقم الفاتورة
+                                            <br/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0pky">Type of Sale :</td>
+                                        <td class="tg-0pky">
+                                            <span t-field="doc.type_of_sale"/>
+                                        </td>
+                                        <td class="tg-0pky">
+                                            <span t-field="doc.type_of_sale"/>
+                                        </td>
+                                        <td class="tg-dvpl">وقت الاصدار
+                                            <br/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0pky">Invoice Issue Time :</td>
+                                        <td class="tg-0pky">
+                                            <t t-esc="datetime.datetime.now().strftime('%H:%M:%S')"/>
+                                            </td>
+                                        <td class="tg-0pky">
+                                            <t t-esc="datetime.datetime.now().strftime('%H:%M:%S')"/>
+                                            </td>
+                                        <td class="tg-dvpl">وقت الفاتورة
+                                            <br/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0pky">Currency :</td>
+                                        <td class="tg-0pky">
+                                            <span t-field="doc.currency_id.name"/>
+                                        </td>
+                                        <td class="tg-0pky">
+                                            <span t-field="doc.currency_id.name"/>
+                                        </td>
+                                        <td class="tg-dvpl">العملة</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0pky">Seller Name :</td>
+                                        <td class="tg-0pky">
+                                            <span t-field="doc.company_id.name"/>
+                                        </td>
+                                        <td class="tg-0pky">
+                                            <span t-field="doc.company_id.name"/>
+                                        </td>
+                                        <td class="tg-dvpl">اسم البائع
+                                            <br/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0pky" rowspan="2">Seller Address :</td>
+                                        <td class="tg-0pky">
+                                            <span t-field="doc.company_id.street"/>
+                                        </td>
+                                        <td class="tg-0pky">
+                                            <span t-field="doc.company_id.street"/>
+                                        </td>
+                                        <td class="tg-dvpl" rowspan="2">عنوان البائع
+                                            <br/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0pky">
+                                            <span t-field="doc.company_id.city"/>
+                                        </td>
+                                        <td class="tg-0pky">
+                                            <span t-field="doc.company_id.city"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0pky">VAT No :</td>
+                                        <td class="tg-0pky">
+                                            <span t-field="doc.company_id.vat"/>
+                                        </td>
+                                        <td class="tg-0pky">
+                                            <span t-field="doc.company_id.vat"/>
+                                        </td>
+                                        <td class="tg-dvpl">ضريبة القيمة المضافة
+                                            <br/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0pky">PO No.</td>
+                                        <td class="tg-0pky">
+                                            <span t-field="doc.po_no"/>
+                                        </td>
+                                        <td class="tg-0pky">
+                                            <span t-field="doc.po_no"/>
+                                        </td>
+                                        <td class="tg-dvpl">أمر شراء
+                                            <br/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0pky">Payment Term :</td>
+                                        <td class="tg-0pky">
+                                            <span t-field="doc.invoice_payment_term_id"/>
+                                        </td>
+                                        <td class="tg-0pky">
+                                            <span t-field="doc.invoice_payment_term_id"/>
+                                        </td>
+                                        <td class="tg-dvpl">معرف البائع الاخ
+                                            <br/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0pky">Buyer Name :</td>
+                                        <td class="tg-0pky">
+                                            <span t-field="doc.partner_id.name"/>
+                                        </td>
+                                        <td class="tg-0pky">
+                                            <span t-field="doc.partner_id.name"/>
+                                        </td>
+                                        <td class="tg-dvpl">اسم المشتري
+                                            <br/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0pky" rowspan="3">Buyer Address :</td>
+                                        <td class="tg-0pky">
+                                            <span t-field="doc.partner_id.street"/>
+                                        </td>
+                                        <td class="tg-0pky">
+                                            <span t-field="doc.partner_id.street"/>
+                                        </td>
+                                        <td class="tg-dvpl" rowspan="3">عنوان المشتري
+                                            <br/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0pky">
+                                            <span t-field="doc.partner_id.street2"/>
+                                        </td>
+                                        <td class="tg-0pky">
+                                            <span t-field="doc.partner_id.street2"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0pky">
+                                            <span t-field="doc.partner_id.country_id"/>
+                                        </td>
+                                        <td class="tg-0pky">
+                                            <span t-field="doc.partner_id.country_id"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0pky" rowspan="2">VAT No :</td>
+                                        <td class="tg-0pky" rowspan="2">
+                                            <span t-field="doc.partner_id.vat"/>
+                                        </td>
+                                        <td class="tg-0pky" rowspan="2">
+                                            <span t-field="doc.partner_id.vat"/>
+                                        </td>
+                                        <td class="tg-dvpl" rowspan="2">ضريبة القيمة المضافة
+                                            <br/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <table class="table table-bordered" style="font-size:12px;width: 917px">
+                                <header>
+                                    <th style="text-align:center;background-color:Silver;color:black;font-size:10px;">
+                                        SN
+                                        <br/>
+                                        لا
+                                    </th>
+                                    <th style="text-align:center; background-color:LawnGreen;color:black;">رمز
+                                        Description
+                                        <br/>
+                                        الوصف
+                                    </th>
+                                    <th style="text-align:center;background-color:LawnGreen;color:black;">Qty
+                                        <br/>
+                                        الكمية
+                                    </th>
+                                    <th style="text-align:center;background-color:LawnGreen;color:black;">Unit
+                                        <br/>
+                                        وحدة
+                                    </th>
+                                    <th style="text-align:center;background-color:LawnGreen;color:black;">Unit Price
+                                        <br/>سعر الوحدة
+                                    </th>
+                                    <th style="text-align:center;background-color:LawnGreen;color:black;">Discount
+                                        <br/>
+                                        خصم
+                                    </th>
+                                    <th style="text-align:center;background-color:LawnGreen;color:black;">Taxable Amt
+                                        <br/>
+                                        المبلغ الخاضع للضريبة
+                                    </th>
+                                    <th style="text-align:center;background-color:LawnGreen;color:black;">Vat Rate
+                                        <br/>
+                                        نسبة الضريبة
+                                    </th>
+                                    <th style="text-align:center;background-color:LawnGreen;color:black;">Vat Amt
+                                        <br/>
+                                        قيمة الضريبة
+                                    </th>
+                                    <th style="text-align:center;background-color:LawnGreen;color:black;">Total Amt
+                                        <br/>
+                                        المبلغ الاجمالي
+                                    </th>
+                                </header>
+                                <tbody style="text-align:center; padding-Left:100px;">
+                                    <t t-set="count5" t-value="1"/>
+                                    <t t-foreach="doc.invoice_line_ids" t-as="line">
+                                        <tr>
+                                            <td style="text-align:left;">
+                                                <t t-esc="count5"/>
+                                            </td>
+                                            <td style="text-align:left;">
+                                                <span t-field="line.name"/>
+                                            </td>
+                                            <td style="text-align:left;">
+                                                <span t-field="line.quantity"/>
+                                            </td>
+                                            <td style="text-align:left;">
+                                                <span t-field="line.product_uom_id.name"/>
+                                            </td>
+                                            <td style="text-align:left;">
+                                                <span t-field="line.price_unit"/>
+                                            </td>
+                                            <td style="text-align:left;">
+                                            </td>
+                                            <td style="text-align:left;">
+                                                <span t-esc="sum(line.mapped('price_subtotal'))"/>
+                                            </td>
+                                            <td style="text-align:left;">
+                                                <span t-field="line.tax_ids"/>
+                                            </td>
+                                            <td style="text-align:left;">
+                                            </td>
+                                            <td style="text-align:left;">
+                                                <span t-field="line.move_id.amount_total"/>
+                                            </td>
+
+                                        </tr>
+                                        <t t-set="count5" t-value="count5+ 1"/>
+                                    </t>
+                                </tbody>
+
+                            </table>
+                            <table class="tg" style="undefined;table-layout: fixed; width: 917px">
+                                <colgroup>
+                                    <col style="width: 336px"/>
+                                    <col style="width: 233px"/>
+                                    <col style="width: 168px"/>
+                                    <col style="width: 140px"/>
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th class="tg-0pky" rowspan="5"></th>
+                                        <th class="tg-0pky">Total (Excluding )VAT</th>
+                                        <th class="tg-0pky">الاجمالي بأستثناء ضريبة القيمة المضافة
+                                            <br/>
+                                        </th>
+                                        <th class="tg-0pky"></th>
+                                    </tr>
+                                    <tr>
+                                        <th class="tg-0pky">Discount</th>
+                                        <th class="tg-0pky">خصم</th>
+                                        <th class="tg-0pky">
+                                            <span t-field="line.discount"/>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th class="tg-0pky">Total Taxable Amount
+                                            <br/>
+                                            <br/>
+                                        </th>
+                                        <th class="tg-0pky">اجمالي المبلغ الخاضع للضريبة بأستثناء ضريبة القسمة المضافة
+                                            <br/>
+                                        </th>
+                                        <th class="tg-0pky"></th>
+                                    </tr>
+                                    <tr>
+                                        <th class="tg-0pky">Total VAT</th>
+                                        <th class="tg-0pky">اجمالي ضريبة القيمة المضافة
+                                            <br/>
+                                        </th>
+                                        <th class="tg-0pky">
+                                            <span t-esc="sum(line.mapped('tax_ids.id'))"/>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th class="tg-0pky">Gross Amount</th>
+                                        <th class="tg-0pky">المبلغ الاجمالي
+                                            <br/>
+                                        </th>
+                                        <th class="tg-0pky">
+                                            <span t-esc="sum(line.mapped('price_subtotal'))"/>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="tg-0pky">Account Name :</td>
+                                        <td class="tg-0pky">OPT Chemicals Saudi Factory
+                                            <br/>
+                                        </td>
+                                        <td class="tg-0pky">شركة مصنع أو بي تي السعودية للكيماويات</td>
+                                        <td class="tg-0pky">اسم الحساب
+                                            <br/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0pky">Bank Name :</td>
+                                        <td class="tg-0pky">Riyad Bank</td>
+                                        <td class="tg-0pky">بنك الرياض</td>
+                                        <td class="tg-0pky">اسم البنك
+                                            <br/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0pky">Account No :</td>
+                                        <td class="tg-0pky">3321109169940</td>
+                                        <td class="tg-0pky">3321109169940</td>
+                                        <td class="tg-0pky">رقم الحساب
+                                            <br/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0pky">Notes :</td>
+                                        <td class="tg-0pky">The Tax Invoice )(TI are issued in accordance with
+                                            <br/>
+                                            Article 53 the kingdom of saudi arabia (ksa)
+                                            <br/>
+                                            Implementing Regulation (ir) which captures basic rate tax
+                                        </td>
+                                        <td class="tg-0pky">تم اصدار الفاتورة الضريبية وفقا لمادة 53 من اللائحة
+                                            التنفيذية للمملكة السعودية العربية والتي يلتقط المعدل الاساسي للضريبةوضريبة
+                                            المعدل الصفري
+                                            <br/>
+                                        </td>
+                                        <td class="tg-0pky">ملاحظات</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+    </data>
+</odoo>

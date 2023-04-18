@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- QWeb Reports -->
+        <!-- NAME & FILE_NAME should be the same -->
+        <report
+                id="inventory_report_id"
+                model="stock.picking"
+                report_type="qweb-pdf"
+                string="Inventory Report"
+                name="opt_custom_report.temp_id"
+                file="opt_custom_report.temp_id"
+        />
+
+        <template id="temp_id">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <t t-foreach="docs" t-as="doc">
+                        <div class="page">
+                            <style type="text/css">
+                                .tg {border-collapse:collapse;border-spacing:0;}
+                                .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial,
+                                sans-serif;font-size:14px;
+                                overflow:hidden;padding:10px 5px;word-break:normal;}
+                                .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial,
+                                sans-serif;font-size:14px;
+                                font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+                                .tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+                                .tg .tg-baqh{text-align:center;vertical-align:top}
+                                .tg .tg-nrix{text-align:center;vertical-align:middle}
+                                .tg .tg-0lax{text-align:left;vertical-align:top}
+                            </style>
+                            <table class="tg" style="undefined;table-layout: fixed; width: 917px">
+                                <colgroup>
+                                    <col style="width: 203px"/>
+                                    <col style="width: 224px"/>
+                                    <col style="width: 230px"/>
+                                    <col style="width: 215px"/>
+                                </colgroup>
+                                <thead>
+                                    <tr style="background-color:Silver;">
+                                        <th class="tg-baqh" colspan="2">
+                                            <span style="font-weight:bold">Shipping Information</span>
+                                            <br/>
+                                        </th>
+                                        <th class="tg-nrix" colspan="2">
+                                            <span style="font-weight:bold">Delivery Note</span>
+                                            <br/>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-set="po_partner" t-value="request.env['purchase.order'].sudo().search([('name','=',doc.origin)],limit=1)"/>
+                                    <tr>
+                                        <td class="tg-1wig">Company:</td>
+                                        <td class="tg-0lax"><span t-field="doc.company_id.name"/></td>
+                                        <td class="tg-1wig">Delivery Note No:
+                                            <br/>
+                                        </td>
+                                        <td class="tg-0lax"><span t-field="doc.name"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-1wig">Contact Person:
+                                            <br/>
+                                        </td>
+                                        <td class="tg-0lax"><span t-field="po_partner.partner_id.name"/></td>
+                                        <td class="tg-1wig">Delivery Date:
+                                            <br/>
+                                        </td>
+                                        <td class="tg-0lax"><span t-field="doc.scheduled_date"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-1wig">Contact No:
+                                            <br/>
+                                        </td>
+                                        <td class="tg-0lax"><span t-field="po_partner.partner_id.phone"/></td>
+                                        <td class="tg-1wig">Po No:
+                                            <br/>
+                                        </td>
+                                        <td class="tg-0lax"><span t-field="doc.origin"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-1wig" rowspan="2">Address:</td>
+                                        <td class="tg-0lax" rowspan="2"><span t-field="po_partner.partner_id.street"/></td>
+                                        <td class="tg-1wig">Po Date:
+                                            <br/>
+                                        </td>
+                                        <td class="tg-0lax"><span t-field="doc.date_deadline"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-1wig">Departure Point:
+                                            <br/>
+                                        </td>
+                                        <td class="tg-0lax"><span t-field="doc.location_id.name"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <style type="text/css">
+                                .tg {border-collapse:collapse;border-spacing:0;}
+                                .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial,
+                                sans-serif;font-size:14px;
+                                overflow:hidden;padding:10px 5px;word-break:normal;}
+                                .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial,
+                                sans-serif;font-size:14px;
+                                font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+                                .tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
+                                .tg .tg-0lax{text-align:left;vertical-align:top}
+                            </style>
+                            <table class="tg" style="undefined;table-layout: fixed; width: 917px">
+                                <colgroup>
+                                    <col style="width: 115px"/>
+                                    <col style="width: 125px"/>
+                                    <col style="width: 129px"/>
+                                    <col style="width: 126px"/>
+                                    <col style="width: 115px"/>
+                                    <col style="width: 116px"/>
+                                    <col style="width: 135px"/>
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th class="tg-amwm">Code
+                                            <br/>
+                                        </th>
+                                        <th class="tg-amwm">Description</th>
+                                        <th class="tg-amwm">Quantity</th>
+                                        <th class="tg-amwm">Unit
+                                            <br/>
+                                        </th>
+                                        <th class="tg-amwm">Package</th>
+                                        <th class="tg-amwm">Unit</th>
+                                        <th class="tg-amwm">Remark</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                    </tr>
+                                    <tr style="background-color:Silver;">
+                                        <td class="tg-0lax" colspan="7">
+                                            <span style="font-weight:bold">Recption Information</span>
+                                            <br/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <br/>
+
+                            <div class="row">
+                                <div class="col-3 text-center">
+                                    <div>
+                                        <p>
+                                            <strong>Shipper:</strong>
+                                            <br></br>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="col-1 text-center"/>
+                                <div class="col-3 text-center">
+                                    <div>
+                                        <p>
+                                            <strong>Date:</strong>
+                                            <br></br>
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <div class="row">
+                                <div class="col-3 text-center">
+                                    <div>
+                                        <p>
+                                            <strong>Receiver:</strong>
+                                            <br></br>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="col-1 text-center"/>
+                                <div class="col-3 text-center">
+                                    <div>
+                                        <p>
+                                            <strong>Date:</strong>
+                                            <br></br>
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+    </data>
+</odoo>
