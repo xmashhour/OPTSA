@@ -15,14 +15,14 @@
 
         <template id="temp_id_invoice">
             <t t-call="web.html_container">
-                <t t-call="web.external_layout">
+                <t t-call="web.basic_layout">
                     <t t-foreach="docs" t-as="doc">
                         <div class="page">
                             <style type="text/css">
                                 .tg {border-collapse:collapse;border-spacing:0;}
                                 .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial,
                                 sans-serif;font-size:14px;
-                                overflow:hidden;padding:10px 6px;word-break:normal;}
+                                overflow:hidden;padding:5px 3px;word-break:normal;}
                                 .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial,
                                 sans-serif;font-size:14px;
                                 font-weight:normal;overflow:hidden;padding:13px 7px;word-break:normal;}
@@ -199,10 +199,10 @@
                                     </tr>
                                     <tr>
                                         <td class="tg-0pky" rowspan="3">Buyer Address :</td>
-                                        <td class="tg-0pky">
+                                        <td class="tg-0pky" rowspan="2">
                                             <span t-field="doc.partner_id.street"/>
                                         </td>
-                                        <td class="tg-0pky">
+                                        <td class="tg-0pky" rowspan="2">
                                             <span t-field="doc.partner_id.street"/>
                                         </td>
                                         <td class="tg-dvpl" rowspan="3">عنوان المشتري
@@ -249,39 +249,39 @@
                                         <br/>
                                         لا
                                     </th>
-                                    <th style="text-align:center; background-color:LawnGreen;color:black;">رمز
+                                    <th style="text-align:center; background-color:Silver;color:black;">رمز
                                         Description
                                         <br/>
                                         الوصف
                                     </th>
-                                    <th style="text-align:center;background-color:LawnGreen;color:black;">Qty
+                                    <th style="text-align:center;background-color:Silver;color:black;">Qty
                                         <br/>
                                         الكمية
                                     </th>
-                                    <th style="text-align:center;background-color:LawnGreen;color:black;">Unit
+                                    <th style="text-align:center;background-color:Silver;color:black;">Unit
                                         <br/>
                                         وحدة
                                     </th>
-                                    <th style="text-align:center;background-color:LawnGreen;color:black;">Unit Price
+                                    <th style="text-align:center;background-color:Silver;color:black;">Unit Price
                                         <br/>سعر الوحدة
                                     </th>
-                                    <th style="text-align:center;background-color:LawnGreen;color:black;">Discount
+                                    <th style="text-align:center;background-color:Silver;color:black;">Discount
                                         <br/>
                                         خصم
                                     </th>
-                                    <th style="text-align:center;background-color:LawnGreen;color:black;">Taxable Amt
+                                    <th style="text-align:center;background-color:Silver;color:black;">Taxable Amt
                                         <br/>
                                         المبلغ الخاضع للضريبة
                                     </th>
-                                    <th style="text-align:center;background-color:LawnGreen;color:black;">Vat Rate
+                                    <th style="text-align:center;background-color:Silver;color:black;">Vat Rate
                                         <br/>
                                         نسبة الضريبة
                                     </th>
-                                    <th style="text-align:center;background-color:LawnGreen;color:black;">Vat Amt
+                                    <th style="text-align:center;background-color:Silver;color:black;">Vat Amt
                                         <br/>
                                         قيمة الضريبة
                                     </th>
-                                    <th style="text-align:center;background-color:LawnGreen;color:black;">Total Amt
+                                    <th style="text-align:center;background-color:Silver;color:black;">Total Amt
                                         <br/>
                                         المبلغ الاجمالي
                                     </th>
@@ -404,21 +404,21 @@
                                             <br/>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="tg-0pky">Notes :</td>
-                                        <td class="tg-0pky">The Tax Invoice )(TI are issued in accordance with
-                                            <br/>
-                                            Article 53 the kingdom of saudi arabia (ksa)
-                                            <br/>
-                                            Implementing Regulation (ir) which captures basic rate tax
-                                        </td>
-                                        <td class="tg-0pky">تم اصدار الفاتورة الضريبية وفقا لمادة 53 من اللائحة
-                                            التنفيذية للمملكة السعودية العربية والتي يلتقط المعدل الاساسي للضريبةوضريبة
-                                            المعدل الصفري
-                                            <br/>
-                                        </td>
-                                        <td class="tg-0pky">ملاحظات</td>
-                                    </tr>
+<!--                                    <tr>-->
+<!--                                        <td class="tg-0pky">Notes :</td>-->
+<!--                                        <td class="tg-0pky">The Tax Invoice )(TI are issued in accordance with-->
+<!--                                            <br/>-->
+<!--                                            Article 53 the kingdom of saudi arabia (ksa)-->
+<!--                                            <br/>-->
+<!--                                            Implementing Regulation (ir) which captures basic rate tax-->
+<!--                                        </td>-->
+<!--                                        <td class="tg-0pky">تم اصدار الفاتورة الضريبية وفقا لمادة 53 من اللائحة-->
+<!--                                            التنفيذية للمملكة السعودية العربية والتي يلتقط المعدل الاساسي للضريبةوضريبة-->
+<!--                                            المعدل الصفري-->
+<!--                                            <br/>-->
+<!--                                        </td>-->
+<!--                                        <td class="tg-0pky">ملاحظات</td>-->
+<!--                                    </tr>-->
                                 </tbody>
                             </table>
                         </div>
