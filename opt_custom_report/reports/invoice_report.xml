@@ -21,10 +21,10 @@
                             <style type="text/css">
                                 .tg {border-collapse:collapse;border-spacing:0;}
                                 .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial,
-                                sans-serif;font-size:14px;
-                                overflow:hidden;padding:5px 3px;word-break:normal;}
+                                sans-serif;font-size:12px;
+                                overflow:hidden;padding:4px 2px;word-break:normal;}
                                 .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial,
-                                sans-serif;font-size:14px;
+                                sans-serif;font-size:12px;
                                 font-weight:normal;overflow:hidden;padding:13px 7px;word-break:normal;}
                                 .tg .tg-9wq8{border-color:inherit;text-align:center;vertical-align:middle}
                                 .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
@@ -242,7 +242,7 @@
                                 </tbody>
                             </table>
                             <br/>
-                            <table class="table table-bordered" style="font-size:12px;width: 917px">
+                            <table class="table table-bordered" style="font-size:11px;width: 917px">
                                 <header>
                                     <th style="text-align:center;background-color:Silver;color:black;font-size:10px;">
                                         SN
