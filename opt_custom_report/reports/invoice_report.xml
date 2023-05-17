@@ -207,33 +207,37 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="tg-0pky" rowspan="3">Buyer Address :</td>
-                                        <td class="tg-0pky" rowspan="2">
+                                        <td class="tg-0pky" rowspan="1">Buyer Address :</td>
+                                        <td class="tg-0pky" rowspan="1">
+                                            <span t-field="doc.partner_id.street"/>
                                             <span t-field="doc.partner_id.street"/>
                                         </td>
-                                        <td class="tg-0pky" rowspan="2">
+                                        <td class="tg-0pky" rowspan="1">
+                                            <span t-field="doc.partner_id.street"/>
                                             <span t-field="doc.partner_id.street"/>
                                         </td>
-                                        <td class="tg-dvpl" rowspan="3">عنوان المشتري
+                                        <td class="tg-dvpl" rowspan="1">عنوان المشتري
                                             <br/>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="tg-0pky">
-                                            <span t-field="doc.partner_id.street2"/>
-                                        </td>
-                                        <td class="tg-0pky">
-                                            <span t-field="doc.partner_id.street2"/>
-                                        </td>
+<!--                                        <td class="tg-0pky">-->
+<!--                                            <span t-field="doc.partner_id.city"/>-->
+
+<!--                                        </td>-->
+<!--                                        <td class="tg-0pky">-->
+<!--                                            <span t-field="doc.partner_id.city"/>-->
+
+<!--                                        </td>-->
                                     </tr>
-                                    <tr>
-                                        <td class="tg-0pky">
-                                            <span t-field="doc.partner_id.country_id"/>
-                                        </td>
-                                        <td class="tg-0pky">
-                                            <span t-field="doc.partner_id.country_id"/>
-                                        </td>
-                                    </tr>
+<!--                                    <tr>-->
+<!--                                        <td class="tg-0pky">-->
+<!--                                            <span t-field="doc.partner_id.country_id"/>-->
+<!--                                        </td>-->
+<!--                                        <td class="tg-0pky">-->
+<!--                                            <span t-field="doc.partner_id.country_id"/>-->
+<!--                                        </td>-->
+<!--                                    </tr>-->
                                     <tr>
                                         <td class="tg-0pky" rowspan="2">VAT No :</td>
                                         <td class="tg-0pky" rowspan="2">
