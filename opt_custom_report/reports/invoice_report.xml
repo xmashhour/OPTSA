@@ -18,6 +18,14 @@
                 <t t-call="web.basic_layout">
                     <t t-foreach="docs" t-as="doc">
                         <div class="page">
+                            <div>
+                                <td class="tg-0lax" style="text-align:center">
+                                    <img t-if="doc.company_id.logo"
+                                         t-att-src="image_data_uri(doc.company_id.logo)"
+                                         style="max-height: 70px;min-width:160px"/>
+                                </td>
+                            </div>
+                            <br/>
                             <style type="text/css">
                                 .tg {border-collapse:collapse;border-spacing:0;}
                                 .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial,
@@ -52,7 +60,8 @@
                                             <span style="font-weight:bold">الفاتورة الضريبية</span>
                                         </th>
                                         <th class="tg-0pky" rowspan="2" style="text-align:center">
-                                            <img  t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', doc.name, 400, 400)" alt="QR Code" style="height:100px"/>
+                                            <img t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', doc.name, 400, 400)"
+                                                 alt="QR Code" style="height:100px"/>
                                         </th>
                                     </tr>
                                     <tr>
@@ -83,30 +92,30 @@
                                             <br/>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="tg-0pky">Type of Sale :</td>
-                                        <td class="tg-0pky">
-                                            <span t-field="doc.type_of_sale"/>
-                                        </td>
-                                        <td class="tg-0pky">
-                                            <span t-field="doc.type_of_sale"/>
-                                        </td>
-                                        <td class="tg-dvpl">وقت الاصدار
-                                            <br/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="tg-0pky">Invoice Issue Time :</td>
-                                        <td class="tg-0pky">
-                                            <t t-esc="datetime.datetime.now().strftime('%H:%M:%S')"/>
-                                            </td>
-                                        <td class="tg-0pky">
-                                            <t t-esc="datetime.datetime.now().strftime('%H:%M:%S')"/>
-                                            </td>
-                                        <td class="tg-dvpl">وقت الفاتورة
-                                            <br/>
-                                        </td>
-                                    </tr>
+<!--                                    <tr>-->
+<!--                                        <td class="tg-0pky">Type of Sale :</td>-->
+<!--                                        <td class="tg-0pky">-->
+<!--                                            <span t-field="doc.type_of_sale"/>-->
+<!--                                        </td>-->
+<!--                                        <td class="tg-0pky">-->
+<!--                                            <span t-field="doc.type_of_sale"/>-->
+<!--                                        </td>-->
+<!--                                        <td class="tg-dvpl">وقت الاصدار-->
+<!--                                            <br/>-->
+<!--                                        </td>-->
+<!--                                    </tr>-->
+<!--                                    <tr>-->
+<!--                                        <td class="tg-0pky">Invoice Issue Time :</td>-->
+<!--                                        <td class="tg-0pky">-->
+<!--                                            <t t-esc="datetime.datetime.now().strftime('%H:%M:%S')"/>-->
+<!--                                        </td>-->
+<!--                                        <td class="tg-0pky">-->
+<!--                                            <t t-esc="datetime.datetime.now().strftime('%H:%M:%S')"/>-->
+<!--                                        </td>-->
+<!--                                        <td class="tg-dvpl">وقت الفاتورة-->
+<!--                                            <br/>-->
+<!--                                        </td>-->
+<!--                                    </tr>-->
                                     <tr>
                                         <td class="tg-0pky">Currency :</td>
                                         <td class="tg-0pky">
@@ -404,21 +413,21 @@
                                             <br/>
                                         </td>
                                     </tr>
-<!--                                    <tr>-->
-<!--                                        <td class="tg-0pky">Notes :</td>-->
-<!--                                        <td class="tg-0pky">The Tax Invoice )(TI are issued in accordance with-->
-<!--                                            <br/>-->
-<!--                                            Article 53 the kingdom of saudi arabia (ksa)-->
-<!--                                            <br/>-->
-<!--                                            Implementing Regulation (ir) which captures basic rate tax-->
-<!--                                        </td>-->
-<!--                                        <td class="tg-0pky">تم اصدار الفاتورة الضريبية وفقا لمادة 53 من اللائحة-->
-<!--                                            التنفيذية للمملكة السعودية العربية والتي يلتقط المعدل الاساسي للضريبةوضريبة-->
-<!--                                            المعدل الصفري-->
-<!--                                            <br/>-->
-<!--                                        </td>-->
-<!--                                        <td class="tg-0pky">ملاحظات</td>-->
-<!--                                    </tr>-->
+                                    <!--                                    <tr>-->
+                                    <!--                                        <td class="tg-0pky">Notes :</td>-->
+                                    <!--                                        <td class="tg-0pky">The Tax Invoice )(TI are issued in accordance with-->
+                                    <!--                                            <br/>-->
+                                    <!--                                            Article 53 the kingdom of saudi arabia (ksa)-->
+                                    <!--                                            <br/>-->
+                                    <!--                                            Implementing Regulation (ir) which captures basic rate tax-->
+                                    <!--                                        </td>-->
+                                    <!--                                        <td class="tg-0pky">تم اصدار الفاتورة الضريبية وفقا لمادة 53 من اللائحة-->
+                                    <!--                                            التنفيذية للمملكة السعودية العربية والتي يلتقط المعدل الاساسي للضريبةوضريبة-->
+                                    <!--                                            المعدل الصفري-->
+                                    <!--                                            <br/>-->
+                                    <!--                                        </td>-->
+                                    <!--                                        <td class="tg-0pky">ملاحظات</td>-->
+                                    <!--                                    </tr>-->
                                 </tbody>
                             </table>
                         </div>
