@@ -210,11 +210,11 @@
                                         <td class="tg-0pky" rowspan="1">Buyer Address :</td>
                                         <td class="tg-0pky" rowspan="1">
                                             <span t-field="doc.partner_id.street"/>
-                                            <span t-field="doc.partner_id.street"/>
+                                            <span t-field="doc.partner_id.city"/>
                                         </td>
                                         <td class="tg-0pky" rowspan="1">
                                             <span t-field="doc.partner_id.street"/>
-                                            <span t-field="doc.partner_id.street"/>
+                                            <span t-field="doc.partner_id.city"/>
                                         </td>
                                         <td class="tg-dvpl" rowspan="1">عنوان المشتري
                                             <br/>
