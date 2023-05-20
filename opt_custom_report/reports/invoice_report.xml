@@ -60,8 +60,8 @@
                                             <span style="font-weight:bold">الفاتورة الضريبية</span>
                                         </th>
                                         <th class="tg-0pky" rowspan="2" style="text-align:center">
-                                            <img t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', doc.name, 400, 400)"
-                                                 alt="QR Code" style="height:100px"/>
+                                                  <img t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('QR', doc.einv_sa_qr_code_str, 130, 130)"   class="float-right my-1"/>
+
                                         </th>
                                     </tr>
                                     <tr>
@@ -324,12 +324,16 @@
                                                 <span t-esc="sum(line.mapped('price_subtotal'))"/>
                                             </td>
                                             <td style="text-align:left;">
-                                                <span t-field="line.tax_ids"/>
+                                                <t t-if="line.tax_ids">
+                                                    <span t-esc="line.tax_ids[0].amount"/>
+                                                </t>
+
                                             </td>
                                             <td style="text-align:left;">
+                                                                    <span t-esc="line.price_total-line.price_subtotal"/>
                                             </td>
                                             <td style="text-align:left;">
-                                                <span t-field="line.move_id.amount_total"/>
+                                                <span t-field="line.price_subtotal"/>
                                             </td>
 
                                         </tr>
@@ -347,12 +351,12 @@
                                 </colgroup>
                                 <thead>
                                     <tr>
-                                        <th class="tg-0pky" rowspan="5"></th>
+                                        <th class="tg-0pky" rowspan="5"> </th>
                                         <th class="tg-0pky">Total (Excluding )VAT</th>
                                         <th class="tg-0pky">الاجمالي بأستثناء ضريبة القيمة المضافة
                                             <br/>
                                         </th>
-                                        <th class="tg-0pky"></th>
+                                        <th class="tg-0pky"><span t-esc="sum(doc.invoice_line_ids.mapped('price_subtotal'))"/></th>
                                     </tr>
                                     <tr>
                                         <th class="tg-0pky">Discount</th>
@@ -377,7 +381,7 @@
                                             <br/>
                                         </th>
                                         <th class="tg-0pky">
-                                            <span t-esc="sum(line.mapped('tax_ids.id'))"/>
+                                            <span t-esc="doc.amount_tax"/>
                                         </th>
                                     </tr>
                                     <tr>
@@ -386,7 +390,7 @@
                                             <br/>
                                         </th>
                                         <th class="tg-0pky">
-                                            <span t-esc="sum(line.mapped('price_subtotal'))"/>
+                                            <span t-esc="doc.amount_total"/>
                                         </th>
                                     </tr>
                                 </thead>

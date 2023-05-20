@@ -28,7 +28,6 @@
         'views/views.xml',
         'reports/invoice_report.xml',
         'reports/inventory_report.xml',
-        'views/templates.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

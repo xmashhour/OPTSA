@@ -8,7 +8,6 @@
         <field name="arch" type="xml">
 
             <xpath expr="//field[@name='partner_id']" position="after">
-                <!-- Add your fields or attributes here -->
               <field name="type_of_sale"/>
               <field name="po_no"/>
             </xpath>
