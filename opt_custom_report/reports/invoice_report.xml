@@ -333,7 +333,7 @@
 
                                             </td>
                                             <td style="text-align:left;">
-                                                                    <span t-esc="line.price_total-line.price_subtotal"/>
+                                                                    <span t-esc="round(line.price_total-line.price_subtotal,2)"/>
                                             </td>
                                             <td style="text-align:left;">
                                                 <span t-field="line.price_subtotal"/>
