@@ -14,6 +14,8 @@ class Invoice(models.Model):
     einv_sa_confirmation_datetime = fields.Datetime(string='Confirmation Date', readonly=True, copy=False)
 
     einv_sa_confirmed = fields.Boolean(compute='_compute_einv_sa_confirmation_datetime', store=True)
+    delivery_date = fields.Date(string=' Delivery date')
+
 
     def _compute_einv_sa_confirmation_datetime(self):
         for move in self:
