@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="stock_inventory_report_form_view" model="ir.ui.view">
+        <field name="name">STOCK INVENTORY REPORT</field>
+        <field name="model">casound.stock_inventory_report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Time">
+                <group>
+                    <group>
+                        <field name="start_date"/>
+                    </group>
+                    <group>
+                        <field name="end_date"/>
+                    </group>
+                    <group>
+                        <field name="location_ids" widget="many2many_tags" />
+                    </group>
+                    <group>
+                        <field name="product_ids" widget="many2many_tags" />
+                    </group>
+                    <group>
+                        <field name="categ_ids" widget="many2many_tags" />
+                    </group>
+                </group>
+
+                <footer>
+                    <button name="export_to_excel" type="object" data-hotkey="shift+g" string="Report" class="oe_highlight"/>
+                    <button string="Cancel" class="btn btn-secondary" special="cancel" icon="fa-times mr-2"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Define the action to open the Stock Inventory Report wizard -->
+    <record id="stock_inventory_report_wizard_action" model="ir.actions.act_window">
+        <field name="name">STOCK INVENTORY REPORT</field>
+        <field name="res_model">casound.stock_inventory_report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="stock_inventory_report_form_view"/>
+        <field name="target">new</field>
+    </record>
+
+     <report
+        id="action_stock_inventory_report"
+        model="casound.stock_inventory_report.wizard"
+        string="Stock Inventory Report"
+        report_type="xlsx"
+        name="casound.stock_inventory_report_xlsx"
+        file="casound.stock_inventory_report_xlsx"
+        />
+
+</odoo>

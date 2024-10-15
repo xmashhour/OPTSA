@@ -1,0 +1,8 @@
+<odoo>
+  <data>
+    <menuitem id="stock_inventory_report_menu"
+              name="Stock Inventory Report" parent="stock.menu_warehouse_report"
+              action="stock_inventory_report_wizard_action" sequence="1" />
+
+  </data>
+</odoo>
