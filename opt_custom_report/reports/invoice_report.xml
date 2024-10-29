@@ -58,7 +58,9 @@
                                             <br/>
                                         </th>
                                         <th class="tg-9wq8" colspan="2" rowspan="2">
-                                            <span style="font-weight:bold">Tax Invoice</span>
+                                             <span t-if="doc.move_type == 'out_refund'">Credit Note</span>
+
+                                            <span t-if="doc.move_type == 'out_invoice'" style="font-weight:bold">Tax Invoice</span>
                                             <br/>
                                             <span style="font-weight:bold">الفاتورة الضريبية</span>
                                         </th>
@@ -368,7 +370,9 @@
                                 </colgroup>
                                 <thead>
                                     <tr>
-                                        <th class="tg-0pky" rowspan="5"> </th>
+                                        <th class="tg-0pky" rowspan="5">
+                                        <img src="/opt_custom_report/static/src/images/11.png"/>
+                                        </th>
                                         <th class="tg-0pky">Total (Excluding )VAT</th>
                                         <th class="tg-0pky">الاجمالي بأستثناء ضريبة القيمة المضافة
                                             <br/>
