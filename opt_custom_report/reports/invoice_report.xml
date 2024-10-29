@@ -62,7 +62,7 @@
 
                                             <span t-if="doc.move_type == 'out_invoice'" style="font-weight:bold">Tax Invoice</span>
                                             <br/>
-                                            <span style="font-weight:bold">الفاتورة الضريبية</span>
+                                            <span t-if="doc.move_type == 'out_invoice'" style="font-weight:bold">الفاتورة الضريبية</span>
                                         </th>
                                         <th class="tg-0pky" rowspan="2" style="text-align:center">
                                                   <img t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('QR', doc.einv_sa_qr_code_str, 130, 130)"   class="float-right my-1"/>
