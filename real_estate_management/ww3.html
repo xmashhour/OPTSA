@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Supervisor Assignment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 400px;
+            margin: auto;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h2 {
+            margin-top: 0;
+        }
+        .search-bar, .filter-select {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .employee-list {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+        .employee-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        .employee-item:last-child {
+            border-bottom: none;
+        }
+        .employee-item input {
+            margin-right: 10px;
+        }
+        .reassign-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4a90e2;
+            border: none;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .reassign-button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        /* Modal styles */
+        .modal {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+        }
+        .modal-content h3 {
+            margin-top: 0;
+        }
+        .modal-content select, .modal-content input[type="date"] {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .modal-footer {
+            display: flex;
+            justify-content: space-between;
+        }
+        .modal-footer button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .confirm-button {
+            background-color: #4caf50;
+            color: white;
+        }
+        .cancel-button {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Supervisor Assignment</h2>
+    <input type="text" class="search-bar" placeholder="Search employees...">
+    <select class="filter-select">
+        <option>All Supervisors</option>
+    </select>
+
+    <div class="employee-list">
+        <div class="employee-item"><input type="checkbox"> Alex Wilson (4 employees)</div>
+        <div class="employee-item"><input type="checkbox"> John Doe</div>
+        <div class="employee-item"><input type="checkbox"> Robert Johnson</div>
+        <div class="employee-item"><input type="checkbox"> Emily Williams</div>
+        <div class="employee-item"><input type="checkbox"> David Miller</div>
+        <div class="employee-item"><input type="checkbox"> Maria Rodriguez (4 employees)</div>
+        <div class="employee-item"><input type="checkbox"> Jane Smith</div>
+        <div class="employee-item"><input type="checkbox"> Michael Brown</div>
+        <div class="employee-item"><input type="checkbox"> Sarah Davis</div>
+        <div class="employee-item"><input type="checkbox"> Lisa Wilson</div>
+    </div>
+
+    <button class="reassign-button" disabled>Re-assign Selected</button>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="reassignModal">
+    <div class="modal-content">
+        <h3>Re-assign Employees</h3>
+        <p id="employee-count">Re-assigning X employees</p>
+        <select>
+            <option>Select a supervisor</option>
+            <option>Supervisor 1</option>
+            <option>Supervisor 2</option>
+        </select>
+        <input type="date" value="2025-04-18">
+        <div class="modal-footer">
+            <button class="cancel-button" onclick="closeModal()">Cancel</button>
+            <button class="confirm-button" onclick="closeModal()">Confirm</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const checkboxes = document.querySelectorAll('.employee-item input[type="checkbox"]');
+    const reassignButton = document.querySelector('.reassign-button');
+    const modal = document.getElementById('reassignModal');
+    const employeeCount = document.getElementById('employee-count');
+
+    checkboxes.forEach(cb => {
+        cb.addEventListener('change', () => {
+            const selected = document.querySelectorAll('.employee-item input[type="checkbox"]:checked').length;
+            reassignButton.disabled = selected === 0;
+        });
+    });
+
+    reassignButton.addEventListener('click', () => {
+        const selected = document.querySelectorAll('.employee-item input[type="checkbox"]:checked').length;
+        employeeCount.textContent = `Re-assigning ${selected} employee${selected > 1 ? 's' : ''}`;
+        modal.style.display = 'flex';
+    });
+
+    function closeModal() {
+        modal.style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
+</title>
+</head>
+<body>
+
+</body>
+</html>

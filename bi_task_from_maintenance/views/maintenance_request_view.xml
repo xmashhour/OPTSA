@@ -1,0 +1,41 @@
+<odoo>
+  <data>
+
+      <record id="task_from_maintenance_action" model="ir.actions.act_window">
+          <field name="name">Tasks</field>
+          <field name="res_model">project.task</field>
+          <field name="view_mode">tree,form,calendar,pivot,graph,activity</field>
+          <field name="domain">[('maintenance_id', '=', active_id)]</field>
+          <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                  Click <i>Create</i> to start a new task.
+              </p>
+          </field>
+      </record>
+
+        <!-- inherit maintenance view -->
+        <record id="hr_equipment_request_form_inherit" model="ir.ui.view">
+              <field name="name">maintenance.request.form</field>
+              <field name="model">maintenance.request</field>
+              <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form"/>
+              <field name="arch" type="xml">
+                  <xpath expr="//sheet/div[1]" position="before">
+                  <div class="oe_button_box" name="button_box">
+                  <button class="oe_stat_button"
+                            icon="fa-tasks"
+                            type="action"
+                            name="%(task_from_maintenance_action)d"
+                            attrs="{'invisible': [('task_count', '=', 0)]}">
+                      <span class="o_stat_text">Tasks</span>
+                      <field name="task_count"/>
+                    </button>
+                  </div>
+                  </xpath>
+                  <button name="archive_equipment_request" position="after">
+                        <button name="%(maintenance_task_action)d" type="action" string="Create Task" class="oe_highlight"/>
+                  </button>
+              </field>
+        </record>
+
+  </data>
+</odoo>
