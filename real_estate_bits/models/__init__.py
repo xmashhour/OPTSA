@@ -7,7 +7,7 @@ from . import res_company
 from . import repair_order
 from . import property_extra
 from . import account_payment
-from . import account_invoice
+# from . import account_invoice
 from . import attachment_line
 from . import project_worksite
 from . import sales_commission
