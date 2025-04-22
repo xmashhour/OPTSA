@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="view_property_contract_tree" model="ir.ui.view">
+            <field name="name">property.contract.tree</field>
+            <field name="model">property.contract</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="partner_id"/>
+                    <field name="user_id"/>
+                    <field name="project_id"/>
+                    <field name="project_code"/>
+                    <field name="property_id"/>
+                    <field name="property_code"/>
+                    <field name="floor"/>
+                    <!--                    <field name="property_fee"/>-->
+                    <field name="insurance_fee"/>
+                    <field name="address"/>
+                    <field name="state" widget="badge" decoration-info="state == 'draft'"
+                           decoration-success="state in ('confirmed','renew')" decoration-danger="state == 'cancel'"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_property_contract_search" model="ir.ui.view">
+            <field name="name">property.contract.tree.filter</field>
+            <field name="model">property.contract</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Top Search">
+                    <group>
+                        <field name="name"/>
+                        <field name="partner_id"/>
+                        <field name="user_id"/>
+                        <field name="project_id"/>
+                        <field name="project_code"/>
+                        <field name="property_id" options="{'no_create': True, 'no_open': True}"/>
+                        <field name="property_code"/>
+                    </group>
+                    <newline/>
+                    <group expand="0" string="Group By...">
+                        <filter name="user_id" string="Responsible" domain="[]" context="{'group_by':'user_id'}"/>
+                        <filter name="partner_id" string="Partner" domain="[]" context="{'group_by':'partner_id'}"/>
+                        <filter name="project_id" string="Project" domain="[]" context="{'group_by':'project_id'}"/>
+                        <filter name="state" string="State" domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_property_contract_form" model="ir.ui.view">
+            <field name="name">property.contract.form</field>
+            <field name="model">property.contract</field>
+            <field name="arch" type="xml">
+                <form string="Property Contract">
+                    <header>
+                        <button name="action_receive_deposit" type="object" string="Receive Advance Payment"
+                                attrs="{'invisible':[('contract_type', '!=', 'is_ownership'), ('advance_payment_payment_id','!=',False)]}"
+                                class="oe_highlight"/>
+                        <button name="action_calculate" type="object" string="Calculate " class="oe_highlight"
+                                attrs="{'invisible':[('state','in',('cancel','confirmed','renew'))]}"/>
+                        <button name="action_confirm" type="object" string="Confirm" class="oe_highlight"
+                                attrs="{'invisible':[('state','in',('cancel','confirmed','renew'))]}"/>
+                        <button name="action_cancel" type="object" string="Cancel" class="oe_highlight"
+                                attrs="{'invisible':['|',('state','=','cancel'),('state','=','draft')]}"/>
+                        <field name="state" options="{'clickable': '1'}" widget="statusbar"
+                               statusbar_visible="draft,confirmed,cancel"/>
+                    </header>
+                    <sheet>
+                        <!--                        <div class="oe_button_box" name="button_box">-->
+                        <!--                            <button class="oe_stat_button" type="object" name="view_payments" icon="fa-comments"-->
+                        <!--                                    attrs="{'invisible':[('count_payment','=', 0)]}">-->
+                        <!--                                <field string="Payments" name="count_payment" widget="statinfo"/>-->
+                        <!--                            </button>-->
+                        <!--                        </div>-->
+
+                        <div class="oe_title mb24">
+                            <h1>
+                                <field class="text-break" name="name" readonly="1"/>
+                            </h1>
+                        </div>
+
+                        <style>
+                            div[name="options"] .o_field_boolean {
+                            margin-left: 10px;
+                            margin-right: 0px;
+                            }
+                        </style>
+                        <field name="contract_type" widget="radio" options="{'horizontal': true}"/>
+
+                        <separator string="Basic Info" colspan="4"/>
+                        <group>
+                            <group>
+                                <field name="date" required="1" attrs="{'readonly': [('state','!=','draft')]}"/>
+                                <field name="partner_id" string="Partner"
+                                       attrs="{'readonly': [('state','!=','draft')]}"/>
+                                <field name="user_id"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="reservation_id"/>
+                            </group>
+                            <group>
+                                <field name="origin" attrs="{'readonly': [('state','!=','draft')]}"/>
+                                <!--                                <field name="reservation_id" attrs="{'readonly': [('state','!=','draft')]}"/>-->
+                                <field name="apply_tax"/>
+                            </group>
+                        </group>
+
+                        <separator string="Location" colspan="4"/>
+                        <group>
+                            <group>
+                                <field name="project_id" attrs="{'readonly': [('state','!=','draft')]}"/>
+                                <field name="project_code"/>
+                            </group>
+                            <group>
+                                <field name="region_id" attrs="{'readonly': [('state','!=','draft')]}"/>
+                            </group>
+                        </group>
+
+                        <separator string="Property" colspan="4"/>
+                        <group>
+                            <group>
+                                <field name="property_id" options="{'no_create': True, 'no_open': True}"
+                                       attrs="{'readonly': [('state','!=','draft')]}"/>
+                                <field name="property_code"/>
+                                <field name="floor" attrs="{'readonly': [('state','!=','draft')]}"/>
+                                <field name="address" attrs="{'readonly': [('state','!=','draft')]}"/>
+                            </group>
+                            <group>
+                                <field name="type" attrs="{'readonly': [('state','!=','draft')]}"/>
+                                <field name="property_area" string="Property Area SFT"
+                                       attrs="{'readonly': [('state','!=','draft')]}"/>
+                                <field name="price_per_m" string="Property Price"
+                                       attrs="{'readonly': [('state','!=','draft')]}"/>
+                            </group>
+                        </group>
+
+                        <separator string="Property Contract" colspan="4"/>
+                        <group>
+                            <group>
+                                <field name="date_from" attrs="{'readonly': [('state','!=','draft')]}"/>
+                                <field name="date_to" attrs="{'readonly': [('state','!=','draft')]}"/>
+                                <label for="recurring_interval"/>
+                                <div class="o_row">
+                                    <span class="mr-1">Every</span>
+                                    <field name="recurring_interval" required="1"
+                                           attrs="{'readonly': [('state','!=','draft')]}"/>
+                                    <field name="periodicity" class="field_rule_type" required="1"
+                                           attrs="{'readonly': [('state','!=','draft')]}"/>
+                                </div>
+                            </group>
+                            <group>
+                                <field name="rental_agreement" required="1"/>
+                                <!--                                <field name="property_fee" attrs="{'readonly': [('state','!=','draft')]}"/>-->
+                                <field name="insurance_fee" attrs="{'readonly': [('state','!=','draft')]}"/>
+                            </group>
+                        </group>
+
+                        <separator string="Payment" colspan="4" attrs="{'invisible': [('contract_type', '!=', 'is_ownership')]}"/>
+                        <group attrs="{'invisible': [('contract_type', '!=', 'is_ownership')]}">
+                            <group>
+                                <field name="pricing" attrs="{'readonly': [('state','!=','draft')]}"/>
+                                <field name="date_payment"
+                                       attrs="{'readonly': [('state','!=','draft')], 'required': [('contract_type', '=', 'is_ownership')]}"/>
+                                <field name="template_id"
+                                       attrs="{'readonly': [('state','!=','draft')], 'required': [('contract_type', '=', 'is_ownership')]}"/>
+                                <field name="deposit" attrs="{'readonly': [('state','!=','draft')]}"/>
+                            </group>
+                            <group>
+                                <field name="advance_payment_type"
+                                       attrs="{'readonly': [('state','!=','draft')]}"/>
+                                <field name="advance_payment"
+                                       attrs="{'readonly': [('state','!=','draft')]}"/>
+                                <field name="advance_payment_date"
+                                       attrs="{'readonly': [('state','!=','draft')]}"/>
+                                <field name="advance_payment_journal_id"
+                                       attrs="{'readonly': [('state','!=','draft')],
+                                       'required': [('advance_payment', '>', 0)]}"/>
+                                <field name="advance_payment_payment_id"
+                                       attrs="{'required': [('advance_payment', '>', 0)]}"/>
+                            </group>
+                        </group>
+
+                        <separator string="Increment Cycle" colspan="4"/>
+                        <group>
+                            <group>
+                                <label for="increment_recurring_interval" string="Increment Period"/>
+                                <div class="o_row">
+                                    <span class="mr-1">Every</span>
+                                    <field name="increment_recurring_interval" required="1"
+                                           attrs="{'readonly': [('state','!=','draft')]}"/>
+                                    <field name="increment_period" class="field_rule_type" required="1"
+                                           attrs="{'readonly': [('state','!=','draft')]}"/>
+                                </div>
+                                <field name="increment_percentage"/>
+                            </group>
+                        </group>
+
+                        <notebook colspan="2">
+                            <page string="Installments">
+                                <field name="loan_line_ids" attrs="{'readonly': [('state','!=','draft')]}">
+                                    <tree default_order="invoice_id,date" string="Installments" editable="bottom">
+                                        <field widget="handle" name="serial" required="1"/>
+                                        <field name="date" required="1"/>
+                                        <field name="name" required="1"/>
+                                        <field name="amount" required="1"/>
+                                        <field name="amount_residual"/>
+                                        <field name="invoice_id" readonly="1"/>
+                                        <field name="invoice_state" widget="badge" optional="show"
+                                               decoration-success="invoice_state == 'posted'"
+                                               decoration-info="invoice_state == 'draft'"/>
+                                        <field name="payment_state" widget="badge"
+                                               decoration-danger="payment_state == 'not_paid'"
+                                               decoration-warning="payment_state in ('partial', 'in_payment')"
+                                               decoration-success="payment_state in ('paid', 'reversed')"
+                                               attrs="{'invisible': [('payment_state', 'in', ('invoicing_legacy'))]}"/>
+                                        <button string="Make Invoice" name="make_invoice" type="object" icon="fa-money"
+                                                attrs="{'invisible': ['|',('invoice_id','!=',False),
+                                                ('parent.state','!=','confirmed')]}"/>
+                                        <button string="View Invoice" name="view_invoice" type="object"
+                                                style="background-color:rgba(0, 160, 74, 0.5);color: #333;"
+                                                attrs="{'invisible': [('invoice_id','=',False)]}"/>
+                                    </tree>
+                                </field>
+                                <group>
+                                    <field name="amount_total"/>
+                                    <field name="paid"/>
+                                    <field name="balance"/>
+                                </group>
+                            </page>
+                            <page string="Documents">
+                                <field name="attachment_line_ids">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="file"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_property_contract_act_window" model="ir.actions.act_window">
+            <field name="name">Property Contract</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">property.contract</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to add a new Property Contract
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>
