@@ -1,6 +1,6 @@
 from . import regions
 # from . import property
-from . import crm_team
+# from . import crm_team
 from . import loan_line
 from . import sale_order
 from . import res_company
