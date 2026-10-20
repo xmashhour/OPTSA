@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_arabic_name" model="ir.ui.view">
+        <field name="name">res.partner.form.arabic.name.opt</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="name_ar" placeholder="الاسم بالعربية"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_company_form_arabic_name" model="ir.ui.view">
+        <field name="name">res.company.form.arabic.name.opt</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="name_ar" placeholder="الاسم بالعربية"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
