@@ -137,7 +137,7 @@
                                             <span t-field="doc.company_id.name"/>
                                         </td>
                                         <td class="tg-0pky">
-                                            <span t-field="doc.company_id.name"/>
+                                            <span t-esc="doc.company_id.name_ar or doc.company_id.name"/>
                                         </td>
                                         <td class="tg-dvpl">اسم البائع
                                             <br/>
@@ -217,7 +217,7 @@
                                             <span t-field="doc.partner_id.name"/>
                                         </td>
                                         <td class="tg-0pky">
-                                            <span t-field="doc.partner_id.name"/>
+                                            <span t-esc="doc.partner_id.name_ar or doc.partner_id.name"/>
                                         </td>
                                         <td class="tg-dvpl">اسم المشتري
                                             <br/>
