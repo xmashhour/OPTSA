@@ -17,7 +17,7 @@
     # Check https://github.com/odoo/odoo/blob/16.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Uncategorized',
-    'version': '0.5',
+    'version': '0.6',
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'account', 'stock'],
@@ -26,6 +26,7 @@
     'data': [
         # 'security/ir.model.access.csv',
         'views/views.xml',
+        'views/partner_arabic_name_views.xml',
         'reports/invoice_report.xml',
         'reports/inventory_report.xml',
     ],
