@@ -56,3 +56,15 @@ class Invoice(models.Model):
             record.einv_sa_qr_code_str = qr_code_str
 
 
+
+
+class ResPartner(models.Model):
+    _inherit = 'res.partner'
+
+    name_ar = fields.Char(string='Arabic Name', translate=False, help='Arabic legal or display name used on bilingual invoices.')
+
+
+class ResCompany(models.Model):
+    _inherit = 'res.company'
+
+    name_ar = fields.Char(string='Arabic Name', related='partner_id.name_ar', readonly=False)
