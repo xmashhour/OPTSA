@@ -30,23 +30,20 @@
                             </div>
                             <br/>
                             <style type="text/css">
-                                /* PDF Arabic font: prefer Google Noto Naskh Arabic when available;
-                                   DejaVu Sans is the local fallback for wkhtmltopdf. */
-                                /* wkhtmltopdf does not reliably load remote Google Fonts. Noto Naskh Arabic is preferred when installed locally; DejaVu Sans is the fallback. */
-                                .opt-arabic-name { font-family: 'Noto Naskh Arabic', 'DejaVu Sans', sans-serif; font-size: 12px; line-height: 1.5; text-align: right; direction: rtl; unicode-bidi: embed; }
+                                /* Use one locally available PDF-safe font for the entire invoice. */
+                                .opt-arabic-name { font-family: 'DejaVu Sans', sans-serif !important; font-size: 11px; font-weight: normal; line-height: 1.45; text-align: right; direction: rtl; unicode-bidi: embed; }
 
+                                .opt-invoice-pdf, .opt-invoice-pdf table, .opt-invoice-pdf th, .opt-invoice-pdf td, .opt-invoice-pdf span, .opt-invoice-pdf div { font-family: 'DejaVu Sans', sans-serif !important; }
                                 .tg {border-collapse:collapse;border-spacing:0;}
-                                .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial,
-                                sans-serif;font-size:12px;
+                                .tg td{border-color:black;border-style:solid;border-width:1px;font-family:'DejaVu Sans', sans-serif;font-size:12px;
                                 overflow:hidden;padding:4px 2px;word-break:normal;}
-                                .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial,
-                                sans-serif;font-size:12px;
+                                .tg th{border-color:black;border-style:solid;border-width:1px;font-family:'DejaVu Sans', sans-serif;font-size:12px;
                                 font-weight:normal;overflow:hidden;padding:13px 7px;word-break:normal;}
                                 .tg .tg-9wq8{border-color:inherit;text-align:center;vertical-align:middle}
                                 .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
                                 .tg .tg-dvpl{border-color:inherit;text-align:right;vertical-align:top}
                             </style>
-                            <table class="tg" style="undefined;table-layout: fixed; width: 917px">
+                            <table class="tg opt-invoice-pdf" style="undefined;table-layout: fixed; width: 917px">
                                 <colgroup>
                                     <col style="width: 265px"/>
                                     <col style="width: 387px"/>
@@ -251,7 +248,7 @@
                                 </tbody>
                             </table>
                             <br/>
-                            <table class="table table-bordered" style="font-size:11px;width: 917px">
+                            <table class="table table-bordered opt-invoice-pdf" style="font-size:11px;width: 917px">
                                 <header>
                                     <th style="text-align:center;background-color:Silver;color:black;font-size:10px;">
                                         SN
