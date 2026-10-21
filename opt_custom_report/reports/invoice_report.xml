@@ -32,7 +32,7 @@
                             <style type="text/css">
                                 /* PDF Arabic font: prefer Google Noto Naskh Arabic when available;
                                    DejaVu Sans is the local fallback for wkhtmltopdf. */
-                                @import url('https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600&amp;display=swap');
+                                /* wkhtmltopdf does not reliably load remote Google Fonts. Noto Naskh Arabic is preferred when installed locally; DejaVu Sans is the fallback. */
                                 .opt-arabic-name { font-family: 'Noto Naskh Arabic', 'DejaVu Sans', sans-serif; font-size: 12px; line-height: 1.5; text-align: right; direction: rtl; unicode-bidi: embed; }
 
                                 .tg {border-collapse:collapse;border-spacing:0;}
@@ -48,10 +48,9 @@
                             </style>
                             <table class="tg" style="undefined;table-layout: fixed; width: 917px">
                                 <colgroup>
-                                    <col style="width: 266px"/>
-                                    <col style="width: 199px"/>
-                                    <col style="width: 183px"/>
-                                    <col style="width: 269px"/>
+                                    <col style="width: 265px"/>
+                                    <col style="width: 387px"/>
+                                    <col style="width: 265px"/>
                                 </colgroup>
                                 <thead>
                                     <tr>
@@ -62,7 +61,7 @@
                                             </span>
                                             <br/>
                                         </th>
-                                        <th class="tg-9wq8" colspan="2" rowspan="2">
+                                        <th class="tg-9wq8" rowspan="2">
                                              <span t-if="doc.move_type == 'out_refund'">Credit Note</span>
 
                                             <span t-if="doc.move_type == 'out_invoice'" style="font-weight:bold">Tax Invoice</span>
@@ -80,9 +79,7 @@
                                 <tbody>
                                     <tr>
                                         <td class="tg-0pky">Invoice Date :</td>
-                                        <td class="tg-0pky">
-                                            <span t-field="doc.invoice_date"/>
-                                        </td>
+                                        
                                         <td class="tg-0pky">
                                             <span t-field="doc.invoice_date"/>
                                         </td>
@@ -92,9 +89,7 @@
                                     </tr>
                                     <tr>
                                         <td class="tg-0pky">Invoice No :</td>
-                                        <td class="tg-0pky">
-                                            <span t-field="doc.name"/>
-                                        </td>
+                                        
                                         <td class="tg-0pky">
                                             <span t-field="doc.name"/>
                                         </td>
@@ -128,9 +123,7 @@
 <!--                                    </tr>-->
                                     <tr>
                                         <td class="tg-0pky">Currency :</td>
-                                        <td class="tg-0pky">
-                                            <span t-field="doc.currency_id.name"/>
-                                        </td>
+                                        
                                         <td class="tg-0pky">
                                             <span t-field="doc.currency_id.name"/>
                                         </td>
@@ -142,18 +135,14 @@
                                             <span t-field="doc.company_id.name"/>
                                             <div t-if="doc.company_id.name_ar" class="opt-arabic-name" dir="rtl"><span t-esc="doc.company_id.name_ar"/></div>
                                         </td>
-                                        <td class="tg-0pky">
-                                            <span t-field="doc.company_id.name"/>
-                                        </td>
+                                        
                                         <td class="tg-dvpl">اسم البائع
                                             <br/>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="tg-0pky" rowspan="2">Seller Address :</td>
-                                        <td class="tg-0pky">
-                                            <span t-field="doc.company_id.street"/>
-                                        </td>
+                                        
                                         <td class="tg-0pky">
                                             <span t-field="doc.company_id.street"/>
                                         </td>
@@ -162,18 +151,14 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="tg-0pky">
-                                            <span t-field="doc.company_id.city"/>
-                                        </td>
+                                        
                                         <td class="tg-0pky">
                                             <span t-field="doc.company_id.city"/>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="tg-0pky">VAT No :</td>
-                                        <td class="tg-0pky">
-                                            <span t-field="doc.company_id.vat"/>
-                                        </td>
+                                        
                                         <td class="tg-0pky">
                                             <span t-field="doc.company_id.vat"/>
                                         </td>
@@ -183,9 +168,7 @@
                                     </tr>
                                     <tr>
                                         <td class="tg-0pky">PO No.</td>
-                                        <td class="tg-0pky">
-                                            <span t-field="doc.po_no"/>
-                                        </td>
+                                        
                                         <td class="tg-0pky">
                                             <span t-field="doc.po_no"/>
                                         </td>
@@ -195,9 +178,7 @@
                                     </tr>
                                     <tr>
                                         <td class="tg-0pky">Delivery date.</td>
-                                        <td class="tg-0pky">
-                                            <span t-field="doc.delivery_date"/>
-                                        </td>
+                                        
                                         <td class="tg-0pky">
                                             <span t-field="doc.delivery_date"/>
                                         </td>
@@ -207,13 +188,11 @@
                                     </tr>
                                     <tr>
                                         <td class="tg-0pky">Payment Term :</td>
+                                        
                                         <td class="tg-0pky">
                                             <span t-field="doc.invoice_payment_term_id"/>
                                         </td>
-                                        <td class="tg-0pky">
-                                            <span t-field="doc.invoice_payment_term_id"/>
-                                        </td>
-                                        <td class="tg-dvpl">معرف البائع الاخ
+                                        <td class="tg-dvpl">شروط الدفع
                                             <br/>
                                         </td>
                                     </tr>
@@ -223,19 +202,14 @@
                                             <span t-field="doc.partner_id.name"/>
                                             <div t-if="doc.partner_id.name_ar" class="opt-arabic-name" dir="rtl"><span t-esc="doc.partner_id.name_ar"/></div>
                                         </td>
-                                        <td class="tg-0pky">
-                                            <span t-field="doc.partner_id.name"/>
-                                        </td>
+                                        
                                         <td class="tg-dvpl">اسم المشتري
                                             <br/>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="tg-0pky" rowspan="1">Buyer Address :</td>
-                                        <td class="tg-0pky" rowspan="1">
-                                            <span t-field="doc.partner_id.street"/>
-                                            <span t-field="doc.partner_id.city"/>
-                                        </td>
+                                        
                                         <td class="tg-0pky" rowspan="1">
                                             <span t-field="doc.partner_id.street"/>
                                             <span t-field="doc.partner_id.city"/>
@@ -264,9 +238,7 @@
 <!--                                    </tr>-->
                                     <tr>
                                         <td class="tg-0pky" rowspan="2">VAT No :</td>
-                                        <td class="tg-0pky" rowspan="2">
-                                            <span t-field="doc.partner_id.vat"/>
-                                        </td>
+                                        
                                         <td class="tg-0pky" rowspan="2">
                                             <span t-field="doc.partner_id.vat"/>
                                         </td>
