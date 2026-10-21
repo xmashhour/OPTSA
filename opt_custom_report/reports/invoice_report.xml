@@ -30,6 +30,11 @@
                             </div>
                             <br/>
                             <style type="text/css">
+                                /* PDF Arabic font: prefer Google Noto Naskh Arabic when available;
+                                   DejaVu Sans is the local fallback for wkhtmltopdf. */
+                                @import url('https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600&amp;display=swap');
+                                .opt-arabic-name { font-family: 'Noto Naskh Arabic', 'DejaVu Sans', sans-serif; font-size: 12px; line-height: 1.5; text-align: right; direction: rtl; unicode-bidi: embed; }
+
                                 .tg {border-collapse:collapse;border-spacing:0;}
                                 .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial,
                                 sans-serif;font-size:12px;
@@ -135,9 +140,10 @@
                                         <td class="tg-0pky">Seller Name :</td>
                                         <td class="tg-0pky">
                                             <span t-field="doc.company_id.name"/>
+                                            <div t-if="doc.company_id.name_ar" class="opt-arabic-name" dir="rtl"><span t-esc="doc.company_id.name_ar"/></div>
                                         </td>
                                         <td class="tg-0pky">
-                                            <span t-esc="doc.company_id.name_ar or doc.company_id.name"/>
+                                            <span t-field="doc.company_id.name"/>
                                         </td>
                                         <td class="tg-dvpl">اسم البائع
                                             <br/>
@@ -215,9 +221,10 @@
                                         <td class="tg-0pky">Buyer Name :</td>
                                         <td class="tg-0pky">
                                             <span t-field="doc.partner_id.name"/>
+                                            <div t-if="doc.partner_id.name_ar" class="opt-arabic-name" dir="rtl"><span t-esc="doc.partner_id.name_ar"/></div>
                                         </td>
                                         <td class="tg-0pky">
-                                            <span t-esc="doc.partner_id.name_ar or doc.partner_id.name"/>
+                                            <span t-field="doc.partner_id.name"/>
                                         </td>
                                         <td class="tg-dvpl">اسم المشتري
                                             <br/>
